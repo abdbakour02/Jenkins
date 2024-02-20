@@ -1,4 +1,5 @@
 CODE_CHANGES = getGitChanges()
+
 pipeline {
   agent any
   environment {
@@ -53,5 +54,10 @@ pipeline {
       }
      }
   }
-  
+
+    post {
+    always {
+      echo 'this is post section executed always or when success or failure'
+    }
+  }
 }
