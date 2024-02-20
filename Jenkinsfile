@@ -44,7 +44,7 @@ pipeline {
         echo 'deploying the application..'
         echo "deploying with ${Server_CREDENTIALS}"
         sh "${SERVER_CREDENTIALS}"
-        echo "deploying version ${param.VERSION}
+        echo "deploying version ${param.VERSION}"
       }
     }
   }
