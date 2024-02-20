@@ -24,7 +24,7 @@ pipeline {
         echo 'building the application..'
         echo "buildling version ${NEW_VERSION}"
       }
-    }
+}
     stage('Test'){
       when {
         expression {
@@ -34,23 +34,26 @@ pipeline {
       steps {
         echo 'testing the application..'
         withCredentials([
-          usernamePassword(credentials:'User-cred', usernameVariable: User, passwordVariable: PWD]) {
+          usernamePassword(credentials:'User-cred', usernameVariable: User, passwordVariable: PWD
+          ]) {
             sh "some script ${User} ${PWD}"
-        }
+        }                     
       }
-    }
+  }
       stage('Deploy'){
       steps {
         echo 'deploying the application..'
         echo "deploying with ${Server_CREDENTIALS}"
-        sh "${SERVER_CREDENTIALS"
+        sh "${SERVER_CREDENTIALS}"
         echo "deploying version ${param.VERSION}
       }
     }
+  }
+  
   post {
     alwyas {
       echo 'this is post section executed always or when success or failure'
     }
   }
-  }
+          
 }
