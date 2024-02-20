@@ -11,7 +11,7 @@ pipeline {
   }
   parameters {
     choice(name: 'VERSION', choices: ['1.2.0', '1.2.1','1.3.0'], description: '')
-    booleanParam( name: 'executeTests', defaultValue: true, description: '')
+    booleanParam(name: 'executeTests', defaultValue: true, description: '')
   }
   stages {
     stage('Build'){
@@ -33,7 +33,7 @@ pipeline {
       steps {
         echo 'testing the application..'
         withCredentials([
-          usernamePassword(credentials:'User-cred', usernameVariable: User, passwordVariable: PWD
+          usernamePassword(credentials:'User-cred', usernameVariable: User, passwordVariable: PWD)
           ]) {
             sh "some script ${User} ${PWD}"
         }                     
