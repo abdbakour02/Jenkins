@@ -53,10 +53,5 @@ pipeline {
       }
      }
   }
-  post {
-    always {
-      echo 'this is post section executed always or when success or failure'
-    }
-  }
   
 }
