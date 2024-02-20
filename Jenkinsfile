@@ -1,28 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('run frontend') {
             steps {
-                echo "Building.."
-                sh '''
-                echo "doing build stuff.."
-                '''
+                echo "excuting yarn..."
+                Nodejs('NodeJS 10.17.0') {
+                    sh 'yarn install'
+                }
             }
         }
-        stage('Test') {
+        stage('run backend') {
             steps {
-                echo "Testing.."
-                sh '''
-                echo "doing test stuff.."
-                '''
-            }
-        }
-        stage('Deliver') {
-            steps {
-                echo 'Deliver....'
-                sh '''
-                echo "doing delivery stuff.."
-                '''
+                echo "excuting gradle..."
+                withgradle(){
+                    sh './gradlew -v'
+                }
             }
         }
     }
