@@ -2,7 +2,7 @@ CODE_CHANGES = getGitChanges()
 pipeline {
   agent any
   environment {
-    NEW_VERSION == '1.3.0'
+    NEW_VERSION = '1.3.0'
     SERVER_CREDENTIALS = credentials('Server-cred')
   }
   tools {
@@ -13,7 +13,9 @@ pipeline {
     choice(name: 'VERSION', choices: ['1.2.0', '1.2.1','1.3.0'], description: '')
     booleanParam(name: 'executeTests', defaultValue: true, description: '')
   }
+  
   stages {
+  
     stage('Build'){
       when {
         expression {
@@ -24,6 +26,8 @@ pipeline {
         echo 'building the application..'
         echo "buildling version ${NEW_VERSION}"
       }
+    }
+    
     stage('Test'){
       when {
         expression {
@@ -38,15 +42,16 @@ pipeline {
             sh "some script ${User} ${PWD}"
         }                     
       }
-  }
-      stage('Deploy'){
+    }
+    
+    stage('Deploy'){
       steps {
         echo 'deploying the application..'
         echo "deploying with ${Server_CREDENTIALS}"
         sh "${SERVER_CREDENTIALS}"
         echo "deploying version ${param.VERSION}"
       }
-    }
+     }
   }
   
   post {
@@ -55,5 +60,4 @@ pipeline {
     }
   }
           
-}
 }
