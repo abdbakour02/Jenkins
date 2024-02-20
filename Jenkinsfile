@@ -52,12 +52,11 @@ pipeline {
         echo "deploying version ${param.VERSION}"
       }
      }
-  
+  }
   post {
     always {
       echo 'this is post section executed always or when success or failure'
     }
   }
   
-  }
 }
